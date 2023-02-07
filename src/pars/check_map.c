@@ -1,85 +1,107 @@
 #include "../../includes/cub3d.h"
 
-int	ft_check_esp(char **map, int line, int colonne)
+int	chk_if_closed(char **map, int len)
 {
-	if (map[line][colonne + 1] == ' ' || \
-		map[line][colonne -1] == ' ' || \
-		map[line + 1][colonne] == ' ' || \
-		map[line -1][colonne] == ' ')
-		err_exit("Invalid Map\n", 1);
+	int	i;
+	int	j;
+
+	i = ft_strlen(map[len]);
+	j = 0;
+	if (map[len + 1])
+		j = ft_strlen(map[len + 1]);
+	if (i > j && j > 0)
+	{
+		if (ft_bordur_bis(map, len, j))
+			return (1);
+	}
+	else if (j > i)
+	{
+		if (ft_bordur_bis(map, len + 1, i))
+			return (1);
+	}
+	return (0);
+}
+
+int	ft_chk(char **map, int line, int cln)
+{
+	if (map[line][cln + 1] == ESPACE || \
+		map[line][cln -1] == ESPACE || \
+		map[line + 1][cln] == ESPACE || \
+		map[line -1][cln] == ESPACE)
+		err_exit("Map err\n", 1);
+	return (0);
+}
+
+int	chk_map_bis(t_parma *map, int line, int cln)
+{
+	if ((line == 0 && ft_bordur(map->map.map, line, cln)) \
+		|| (line == map->map.line - 1 && \
+		ft_bordur(map->map.map, line, cln)))
+		err_exit("Map err\n", 1);
+	else if (cln == 0 && ft_bordur(map->map.map, line, cln))
+		err_exit("Map err\n", 1);
+	else if (cln == ft_strlen(map->map.map[line]) - 1 && \
+		ft_bordur(map->map.map, line, cln))
+		err_exit("Map err\n", 1);
+	else if ((line > 0 && line < map->map.line - 1) \
+			&& (cln > 0 && cln < ft_strlen(map->map.map[line]) - 1))
+	{
+		if (map->map.map[line][cln] == ZERO && \
+			(map->map.map[line + 1][cln] == ESPACE \
+			|| map->map.map[line - 1][cln] == ESPACE \
+			|| map->map.map[line][cln + 1] == ESPACE \
+			|| map->map.map[line][cln - 1] == ESPACE))
+			err_exit("Map err\n", 1);
+	}
 	return (0);
 }
 
 int	c_maps(char **map)
 {
-	int	line;
-	int	column;
+	int	len;
+	int	cln;
 	int	find;
 
-	line = 0;
+	len = 0;
 	find = 0;
-	while (map[line])
+	while (map[len])
 	{
-		column = 0;
-		while (map[line][column] > 0)
+		cln = 0;
+		while (map[len][cln] > 0)
 		{
-			if (!ft_set_char(map[line][column], " 01NSEW"))
-				err_exit("Invalid Map: Character\n", 1);
-			if (ft_set_char(map[line][column], "NSEW") \
-			&& !ft_check_esp(map, line, column))
+			if (!test_char(map[len][cln], " 01NSEW"))
+				err_exit("Map err: Character\n", 1);
+			if (test_char(map[len][cln], "NSEW") \
+			&& !ft_chk(map, len, cln))
 				find++;
-			column++;
+			cln++;
 		}
-		line++;
+		len++;
 	}
 	if (!find)
-		err_exit("Invalid Map: Player\n", 1);
+		err_exit("Map err: Player\n", 1);
 	else if (find > 1)
 		err_exit("No Multiplayer Game\n", 1);
 	return (0);
 }
 
-int	check_map_2(t_parma *map, int line, int column)
+int	c_all_map(t_parma *prm)
 {
-	if ((line == 0 && ft_check_borde(map->map.map, line, column)) \
-		|| (line == map->map.line - 1 && \
-		ft_check_borde(map->map.map, line, column)))
-		err_exit("Invalid Map\n", 1);
-	else if (column == 0 && ft_check_borde(map->map.map, line, column))
-		err_exit("Inavlid Map\n", 1);
-	else if (column == ft_strlen(map->map.map[line]) - 1 && \
-		ft_check_borde(map->map.map, line, column))
-		err_exit("Invalid Map\n", 1);
-	else if ((line > 0 && line < map->map.line - 1) \
-			&& (column > 0 && column < ft_strlen(map->map.map[line]) - 1))
-	{
-		if (map->map.map[line][column] == '0' && \
-			(map->map.map[line + 1][column] == ' ' \
-			|| map->map.map[line - 1][column] == ' ' \
-			|| map->map.map[line][column + 1] == ' ' \
-			|| map->map.map[line][column - 1] == ' '))
-			err_exit("Invalid Map\n", 1);
-	}
-	return (0);
-}
+	int	len;
+	int	cln;
 
-int	c_all_map(t_parma *parma)
-{
-	int	line;
-	int	column;
-
-	line = 0;
-	while (parma->map.map[line])
+	len = 0;
+	while (prm->map.map[len])
 	{
-		column = 0;
-		if (chech_all_wall_closed(parma->map.map, line))
-			err_exit("Invalid Map It Don't Be Close\n", 1);
-		while (parma->map.map[line][column])
+		cln = 0;
+		if (chk_if_closed(prm->map.map, len))
+			err_exit("Map err, it don't cls\n", 1);
+		while (prm->map.map[len][cln])
 		{
-			check_map_2(parma, line, column);
-			column++;
+			chk_map_bis(prm, len, cln);
+			cln++;
 		}
-		line++;
+		len++;
 	}
 	return (0);
 }

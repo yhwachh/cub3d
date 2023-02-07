@@ -1,29 +1,45 @@
 #include "../../includes/cub3d.h"
 
-int	ft_set_char(char car, char *str)
+void	err_exit(char *file, int cod)
+{
+	ft_putstr_fd(file, cod);
+	exit(cod);
+}
+
+void	free_split(char **tab)
+{
+	unsigned int	i;
+
+	i = 0;
+	while (tab[i])
+		free(tab[i++]);
+	free(tab);
+}
+
+int	test_char(char str1, char *str)
 {
 	int	i;
 
 	i = 0;
 	while (str[i])
 	{
-		if (car == str[i])
+		if (str1 == str[i])
 			return (1);
 		i++;
 	}
 	return (0);
 }
 
-int	num_ligne_of_map(char *path)
+int	nb_ligne_map(char *th)
 {
 	int		i;
 	int		fd;
 	char	*ligne;
 
 	i = 0;
-	fd = open(path, O_RDONLY);
+	fd = open(th, O_RDONLY);
 	if (fd == -1)
-		err_exit("File Descriptor Failure\n", 1);
+		err_exit("File err\n", 1);
 	ligne = get_next_line(fd);
 	while (ligne)
 	{
@@ -35,25 +51,20 @@ int	num_ligne_of_map(char *path)
 	return (i);
 }
 
-int	map_len(t_parma *parma)
+int	map_len(t_parma *prm)
 {
 	int	i;
 	int	len;
 
 	i = 0;
 	len = 0;
-	while (parma->cub_content[i])
+	while (prm->cub_content[i])
 	{
-		if (parma->cub_content[i][0] == '1'
-			|| parma->cub_content[i][0] == '0'
-			|| parma->cub_content[i][0] == ' ')
+		if (prm->cub_content[i][0] == ONE
+			|| prm->cub_content[i][0] == ZERO
+			|| prm->cub_content[i][0] == ESPACE)
 			len++;
 		i++;
 	}
 	return (len);
-}
-
-int	ck_generet_line(char *str)
-{
-	return (str[ft_strlen(str) - 1] == '\n');
 }

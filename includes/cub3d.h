@@ -26,7 +26,6 @@ void	init_game(t_parma *game);
 void	start_game(t_parma *game);
 /*************** utils ******************/
 void	err_exit(char *msg, int code);
-void	free_all(t_map *parma);
 void	free_split(char **tab);
 /*************** PARS ******************/
 		/******pars******/	
@@ -35,18 +34,16 @@ void	map_struct(char *argv, t_parma *parma);
 void	g_map(t_parma *parma);
 void	find_player(t_parma *parma);
 		/******pars_utils******/
-int		ft_set_char(char car, char *str);
-int		num_ligne_of_map(char *path);
+int		test_char(char car, char *str);
+int		nb_ligne_map(char *path);
 int		map_len(t_parma *parma);
 		/******check_map******/
-int		ft_check_esp(char **map, int ligne, int colone);
 int		c_maps(char **map);
-int		check_map_2(t_parma *map, int ligne, int colone);
 int		c_all_map(t_parma *parma);
 		/******check_map_utils******/
-int		ft_check_borde(char **map, int ligne, int index);
-int		ft_check_borde2(char **map, int ligne, int index);
-int		chech_all_wall_closed(char **map, int ligne);
+int		ft_bordur(char **map, int ligne, int index);
+int		ft_bordur_bis(char **map, int ligne, int index);
+int		chk_if_closed(char **map, int ligne);
 void	map_chek(t_parma *parma);
 int		ck_generet_line(char *str);
 		/******get_path_tex******/

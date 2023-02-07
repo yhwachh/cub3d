@@ -1,5 +1,10 @@
 #include "../../includes/cub3d.h"
 
+int	ck_generet_line(char *str)
+{
+	return (str[ft_strlen(str) - 1] == '\n');
+}
+
 void	g_map(t_parma *par)
 {
 	int	i;
@@ -36,7 +41,7 @@ void	data(t_parma *par)
 	int	file;
 
 	i = 0;
-	len = num_ligne_of_map(par->map.filename);
+	len = nb_ligne_map(par->map.filename);
 	par->cub_content = malloc(sizeof(char *) * (len + 1));
 	if (!par->cub_content)
 		err_exit("Malloc err\n", 1);

@@ -1,57 +1,75 @@
 #include "../../includes/cub3d.h"
 
-void	check_map_parma_content(t_parma *parma, int *i)
+int	ft_bordur(char **map, int len, int cln)
 {
-	int		find;
+	if (map[len][cln] != ONE && map[len][cln] != ESPACE)
+		return (1);
+	return (0);
+}
 
-	find = 0;
-	while (*i < 4 && parma->cub_content[*i])
+int	ft_bordur_bis(char **map, int len, int index)
+{
+	while (map[len][index])
 	{
-		if (ft_strncmp(parma->cub_content[*i], "NO ", 3) == 0 \
-			|| ft_strncmp(parma->cub_content[*i], "SO ", 3) == 0 \
-			|| ft_strncmp(parma->cub_content[*i], "WE ", 3) == 0 \
-			|| ft_strncmp(parma->cub_content[*i], "EA ", 3) == 0 \
+		if (map[len][index] != ONE && map[len][index] != ESPACE)
+			return (1);
+		index++;
+	}
+	return (0);
+}
+
+void	chk_map_prm(t_parma *prm, int *i)
+{
+	int		f;
+
+	f = 0;
+	while (*i < 4 && prm->cub_content[*i])
+	{
+		if (ft_strncmp(prm->cub_content[*i], "NO ", 3) == 0 \
+			|| ft_strncmp(prm->cub_content[*i], "SO ", 3) == 0 \
+			|| ft_strncmp(prm->cub_content[*i], "WE ", 3) == 0 \
+			|| ft_strncmp(prm->cub_content[*i], "EA ", 3) == 0 \
 			)
 		{		
-			find++;
+			f++;
 		}
 		(*i)++;
 	}
-	if (*i != find && find != 4)
-		err_exit("Invalid Texture\n", 1);
+	if (*i != f && f != 4)
+		err_exit("textur err\n", 1);
 	if (*i == 0)
-		err_exit("Invalid File: Empty Texture", 1);
+		err_exit("file err: Empty Texture", 1);
 }
 
-void	check_map_color(char **color, int *i)
+void	chk_map_clr(char **clr, int *i)
 {
-	int		find;
-	int		ii;
+	int		f;
+	int		d;
 	int		k;
 
-	find = 0;
+	f = 0;
 	k = *i;
-	ii = *i + 2;
-	while (*i < ii && color[*i])
+	d = *i + 2;
+	while (*i < d && clr[*i])
 	{
-		if (ft_strncmp(color[*i], "F ", 2) == 0 \
-			|| ft_strncmp(color[*i], "C ", 2) == 0)
-			find++;
+		if (ft_strncmp(clr[*i], "F ", 2) == 0 \
+			|| ft_strncmp(clr[*i], "C ", 2) == 0)
+			f++;
 		(*i)++;
 	}
-	if (*i - k != find)
-		err_exit("Invalid Color\n", 1);
+	if (*i - k != f)
+		err_exit("clr err\n", 1);
 }
 
-void	map_chek(t_parma *parma)
+void	map_chek(t_parma *prm)
 {
 	int	i;
 
 	i = 0;
-	check_map_parma_content(parma, &i);
-	while (parma->cub_content[i] && ft_strcmp(parma->cub_content[i], "\n") == 0)
+	chk_map_prm(prm, &i);
+	while (prm->cub_content[i] && ft_strcmp(prm->cub_content[i], "\n") == 0)
 		i++;
-	check_map_color(parma->cub_content, &i);
-	while (parma->cub_content[i] && ft_strcmp(parma->cub_content[i], "\n") == 0)
+	chk_map_clr(prm->cub_content, &i);
+	while (prm->cub_content[i] && ft_strcmp(prm->cub_content[i], "\n") == 0)
 		i++;
 }

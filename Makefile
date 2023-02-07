@@ -4,11 +4,9 @@ SRCS_DIR	=	src/
 SRCS		=	main.c				\
 				minimap.c			\
 				init/init_structs.c		 \
-				utils/ft_free.c				\
 				pars/parsing.c				\
 				pars/pars_utils.c	\
 				pars/check_map.c	\
-				pars/check_map_utils.c \
 				pars/check_map_content.c \
 				pars/get_path_texture.c  \
 				raycasting/move.c \
