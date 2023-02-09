@@ -1,18 +1,19 @@
 NAME = cub3D
 OBJ_DIR		=	obj/
 SRCS_DIR	=	src/
-SRCS		=	main.c				\
-				mini_map.c			\
-				init_all_strcts.c		 \
-				parsing.c				\
+SRCS		=	main.c \
+				mini_map.c \
+				init_all_strcts.c \
+				parsing.c \
 				prs_utils.c	\
 				strct_map.c	\
 				strct_map_insd.c \
-				get_txtr.c  \
+				get_txtr.c \
 				move.c \
 				move_bis.c  \
 				rcasting.c \
 				ray_txtr.c \
+				utils.c \
 
 				
 OBJS	= $(addprefix $(OBJ_DIR), $(SRCS:.c=.o))

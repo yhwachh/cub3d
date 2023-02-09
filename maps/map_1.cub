@@ -1,7 +1,7 @@
-NO ./texture/pic0.xpm
-SO ./texture/pic1.xpm
-WE ./texture/pic2.xpm
-EA ./texture/pic3.xpm
+NO ./textr/pic0.xpm
+SO ./textr/pic1.xpm
+WE ./textr/pic2.xpm
+EA ./textr/pic3.xpm
 
 F 61,41,28
 C 53,168,230
