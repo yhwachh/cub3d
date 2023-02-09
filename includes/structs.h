@@ -2,18 +2,29 @@
 #ifndef STRUCTS_H
 # define STRUCTS_H
 
-typedef struct s_color
+typedef struct s_pic
 {
-	int	r;
-	int	g;
-	int	b;
-}	t_color;
+	void	*prm;
+	int		len;
+	int		p;
+	int		octet;
+	int		*a;
+	int		w;
+	int		h;
+}	t_pic;
 
-typedef struct s_vector
+typedef struct s_vct
 {
 	int	x;
 	int	y;
-}	t_vector;
+}	t_vct;
+
+typedef struct s_clr
+{
+	int	red;
+	int	elow;
+	int	blu;
+}	t_clr;
 
 typedef struct s_map
 {
@@ -26,30 +37,19 @@ typedef struct s_map
 	char		*east_texture;
 	char		*filename;
 	char		starting_pos;
-	t_color		floor_color;
-	t_color		ceilling_color;
-	t_vector	player;
+	t_clr		floor_color;
+	t_clr		ceilling_color;
+	t_vct		player;
 }	t_map;
 
-typedef struct s_img
-{
-	void	*ptr;
-	int		len;
-	int		bpp;
-	int		endian;
-	int		*arr;
-	int		width;
-	int		height;
-}	t_img;
-
-typedef struct s_parma
+typedef struct s_prm
 {
 	void		*mlx;
 	void		*win_ptr;
 	char		**cub_content;
 	t_map		map;
-	t_img		img;
-	t_img		tex;
+	t_pic		img;
+	t_pic		tex;
 	double		pos_x;
 	double		pos_y;
 	double		dir_x;
@@ -89,6 +89,6 @@ typedef struct s_parma
 	int			tex_y;
 	int			screen_w;
 	int			screen_h;
-}				t_parma;
+}				t_prm;
 
 #endif

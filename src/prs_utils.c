@@ -1,4 +1,4 @@
-#include "../../includes/cub3d.h"
+#include "../includes/cub3d.h"
 
 void	err_exit(char *file, int cod)
 {
@@ -51,7 +51,7 @@ int	nb_ligne_map(char *th)
 	return (i);
 }
 
-int	map_len(t_parma *prm)
+int	map_len(t_prm *prm)
 {
 	int	i;
 	int	len;

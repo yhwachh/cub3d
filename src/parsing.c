@@ -1,11 +1,11 @@
-#include "../../includes/cub3d.h"
+#include "../includes/cub3d.h"
 
 int	ck_generet_line(char *str)
 {
 	return (str[ft_strlen(str) - 1] == '\n');
 }
 
-void	g_map(t_parma *par)
+void	g_map(t_prm *par)
 {
 	int	i;
 	int	f;
@@ -34,7 +34,7 @@ void	g_map(t_parma *par)
 	par->map.map[f] = NULL;
 }
 
-void	data(t_parma *par)
+void	data(t_prm *par)
 {
 	int	len;
 	int	i;
@@ -55,7 +55,7 @@ void	data(t_parma *par)
 	close(file);
 }
 
-void	map_struct(char *av, t_parma *par)
+void	map_struct(char *av, t_prm *par)
 {
 	par->map.filename = ft_strdup(av);
 	data(par);

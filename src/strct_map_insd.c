@@ -1,4 +1,4 @@
-#include "../../includes/cub3d.h"
+#include "../includes/cub3d.h"
 
 int	ft_bordur(char **map, int len, int cln)
 {
@@ -18,7 +18,7 @@ int	ft_bordur_bis(char **map, int len, int index)
 	return (0);
 }
 
-void	chk_map_prm(t_parma *prm, int *i)
+void	chk_map_prm(t_prm *prm, int *i)
 {
 	int		f;
 
@@ -61,7 +61,7 @@ void	chk_map_clr(char **clr, int *i)
 		err_exit("clr err\n", 1);
 }
 
-void	map_chek(t_parma *prm)
+void	map_chek(t_prm *prm)
 {
 	int	i;
 

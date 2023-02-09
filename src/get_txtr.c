@@ -1,13 +1,13 @@
-#include "../../includes/cub3d.h"
+#include "../includes/cub3d.h"
 
-void	get_clr(t_color *clr, char **str)
+void	get_clr(t_clr *clr, char **str)
 {
-	clr->r = ft_atoi(str[0]);
-	clr->g = ft_atoi(str[1]);
-	clr->b = ft_atoi(str[2]);
+	clr->red = ft_atoi(str[0]);
+	clr->elow = ft_atoi(str[1]);
+	clr->blu = ft_atoi(str[2]);
 }
 
-void	text_open(t_parma *txtr)
+void	text_open(t_prm *txtr)
 {
 	if (open(txtr->map.north_texture, O_RDONLY) < 0 \
 		|| open(txtr->map.south_texture, O_RDONLY) < 0 \
@@ -16,7 +16,7 @@ void	text_open(t_parma *txtr)
 		err_exit("Texture err\n", 1);
 }
 
-void	g_textur(t_parma *prm)
+void	g_textur(t_prm *prm)
 {
 	char	**texture;
 	int		i;
@@ -64,7 +64,7 @@ void	g_posy(t_map *map)
 	}
 }
 
-void	g_color(t_parma *prm)
+void	g_color(t_prm *prm)
 {
 	char	**get_fc;
 	int		i;

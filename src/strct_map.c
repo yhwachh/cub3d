@@ -1,4 +1,4 @@
-#include "../../includes/cub3d.h"
+#include "../includes/cub3d.h"
 
 int	chk_if_closed(char **map, int len)
 {
@@ -32,7 +32,7 @@ int	ft_chk(char **map, int line, int cln)
 	return (0);
 }
 
-int	chk_map_bis(t_parma *map, int line, int cln)
+int	chk_map_bis(t_prm *map, int line, int cln)
 {
 	if ((line == 0 && ft_bordur(map->map.map, line, cln)) \
 		|| (line == map->map.line - 1 && \
@@ -85,7 +85,7 @@ int	c_maps(char **map)
 	return (0);
 }
 
-int	c_all_map(t_parma *prm)
+int	c_all_map(t_prm *prm)
 {
 	int	len;
 	int	cln;
