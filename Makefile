@@ -28,10 +28,9 @@ AR = ar rc
 
 all: objects libft minilibx $(NAME)
 
-libft:
-	make -C libft/
 minilibx:
-	make -C mlx/
+	make -C mlx/ && make -C libft/
+
 objects:
 	@mkdir -p $(OBJ_DIR)
 	@mkdir -p $(OBJ_DIR)/pars
@@ -57,10 +56,6 @@ fclean: clean
 		$(RM) $(NAME)
 
 re: fclean all
-
-RED="\e[31m"
-GREEN="\e[32m"
-ENDCOLOR="\e[0m"
 
 leak:	all
 	leaks -atExit -- ./$(NAME) testing_files/small.cub

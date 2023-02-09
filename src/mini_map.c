@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   mini_map.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ibalbako <ibalbako@student.42mulhouse.fr>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/09 11:44:35 by ibalbako          #+#    #+#             */
+/*   Updated: 2023/02/09 11:44:37 by ibalbako         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/cub3d.h"
 
 static void	draw_player(t_prm *map, int x, int y, int color)
@@ -52,12 +64,12 @@ int	mini_map(t_prm *maps)
 		while (maps->map.map[y][++x])
 		{
 			if (maps->map.map[y][x] == ONE)
-				draw_pixel(maps, (int)(10 * x), (int)(10 * y), 0x00929E9C);
+				draw_pixel(maps, (int)(10 * x), (int)(10 * y), 0x0099FF33);
 			else if (maps->map.map[y][x] == '0' || maps->map.map[y][x] == 'N'
 				|| maps->map.map[y][x] == 'E'
 					|| maps->map.map[y][x] == 'W'
 						|| maps->map.map[y][x] == 'S')
-				draw_pixel(maps, (int)(10 * x), (int)(10 * y), 0x00B5A444);
+				draw_pixel(maps, (int)(10 * x), (int)(10 * y), 0x005533FF);
 		}
 	}
 	draw_player(maps, (int)(10 * maps->pos_y), (int)(10 * maps->pos_x), \

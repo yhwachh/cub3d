@@ -6,7 +6,7 @@
 /*   By: ibalbako <ibalbako@student.42mulhouse.fr>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 10:14:31 by ibalbako          #+#    #+#             */
-/*   Updated: 2022/03/09 11:30:28 by ibalbako         ###   ########.fr       */
+/*   Updated: 2023/02/09 10:02:55 by sloghmar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # include <stdarg.h>
 
 # define BUFFER_SIZE 1
-
 
 int		ft_toupper(int c);
 int		ft_tolower(int c);
